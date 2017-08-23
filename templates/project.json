@@ -22,20 +22,20 @@
     },
     {
       "name": "GIT_CONTEXT_DIR",
-      "description": "Location of the Jenkinsfile",
+      "description": "Location of the Jenkinsfile"
     },
     {
       "name": "GITHUB_WEBHOOK_SECRET",
       "description": "Webhook secret for github",
       "required": true,
-      "generated": "expression",
+      "generate": "expression",
       "from": "[a-zA-Z0-9]{40}"
     },
     {
       "name": "GENERIC_WEBHOOK_SECRET",
       "description": "Webhook secret for github",
       "required": true,
-      "generated": "expression",
+      "generate": "expression",
       "from": "[a-zA-Z0-9]{40}"
     }
   ],
@@ -54,7 +54,7 @@
         }
       },
       "spec": {
-        "sources": {
+        "source": {
           "git": {
             "uri": "${GIT_URI}",
             "ref": "${GIT_REF}"
@@ -67,12 +67,16 @@
         },
         "triggers": [
           {
-            "secret": "${GITHUB_WEBHOOK_SECRET}",
-            "type": "GitHub"
+            "type": "GitHub",
+            "github": {
+              "secret": "${GITHUB_WEBHOOK_SECRET}"
+            }
           },
           {
-            "secret": "${GENERIC_WEBHOOK_SECRET}",
-            "type": "Generic"
+            "type": "Generic",
+            "generic": {
+              "secret": "${GENERIC_WEBHOOK_SECRET}"
+            }
           }
         ]
       },

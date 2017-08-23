@@ -3,7 +3,10 @@ node('maven') {
         checkout scm
         sh "ls -l"
     }
-    stage('Echo') {
-        echo "[INFO] Cust a echo"
+    stage('Create projects') {
+        def projects = readJSON file: pipelines/clustermonkey/projects/project-spec-poc.json
+        for (project in projects) {
+            echo "${project.name} - ${project.description}"
+        }
     }
 }
