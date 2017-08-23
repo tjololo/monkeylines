@@ -1,0 +1,9 @@
+node('maven') {
+    stage('Checkout') {
+        checkout scm
+        sh "ls -l"
+    }
+    stage('Echo') {
+        echo "[INFO] Cust a echo"
+    }
+}
