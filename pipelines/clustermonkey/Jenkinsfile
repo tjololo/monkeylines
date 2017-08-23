@@ -6,7 +6,7 @@ node('maven') {
     stage('Create projects') {
         def projects = readJSON file: "pipelines/clustermonkey/projects/project-spec-poc.json"
         for (project in projects) {
-            echo "${project.name} - ${project.description}"
+            sh "oc adm new-project ${project.name} --display-name='${project.displayname}' --description='${project.description}' --admin=${project.admin}"
         }
     }
 }
