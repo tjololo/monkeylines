@@ -4,7 +4,7 @@ node('maven') {
         sh "ls -l"
     }
     stage('Create projects') {
-        def projects = readJSON file: pipelines/clustermonkey/projects/project-spec-poc.json
+        def projects = readJSON file: "pipelines/clustermonkey/projects/project-spec-poc.json"
         for (project in projects) {
             echo "${project.name} - ${project.description}"
         }
